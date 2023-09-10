@@ -16,6 +16,13 @@ Circle::Circle(double x, double y, double r)
 	radius = r;
 }
 
+void Circle::CircleSet(double x, double y, double r)
+{
+	coord_x = x;
+	coord_y = y;
+	radius = r;
+}
+
 double Circle::CircleLen()
 {
 	return (2 * CircleMyPi * radius); //Check brackets
@@ -28,12 +35,23 @@ double Circle::CircleArea()
 
 double Circle::CircleDistance(Circle obj2)
 {
-	return sqrt(pow(abs(coord_x - obj2.coord_x), 2) + pow(abs(coord_y - obj2.coord_y), 2));
+	return sqrt(pow(fabs(coord_x - obj2.coord_x), 2) + pow(fabs(coord_y - obj2.coord_y), 2));
 }
 
 bool Circle::CircleIntersect(const Circle& obj2)
 {
-	return (abs(radius - obj2.radius) < CircleDistance(obj2) < (radius + obj2.radius));
+	bool result;
+
+	if ((fabs(radius - obj2.radius) < 0.0000001) && (CircleDistance(obj2) < 0.0000001))
+	{
+		result = 0;
+	}
+	else
+	{
+		result = (fabs(radius - obj2.radius) < CircleDistance(obj2) < (radius + obj2.radius));
+	}
+
+	return result;
 }
 
 bool Circle::InCircle(double x, double y)

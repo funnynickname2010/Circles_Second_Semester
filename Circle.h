@@ -8,11 +8,12 @@ class Circle
 
 	static const long double CircleMyPi;
 
+public:
+
 	Circle();
 	Circle(double x, double y, double r);
 
-public:
-
+	void CircleSet(double x, double y, double r);
 	double CircleDistance(Circle obj2);
 	double CircleLen();
 	double CircleArea();
