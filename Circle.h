@@ -14,6 +14,9 @@ public:
 	Circle(double x, double y, double r);
 
 	void CircleSet(double x, double y, double r);
+	bool operator <(Circle& obj2);
+	bool operator >(Circle& obj2);
+	bool operator ==(Circle& obj2);
 	double CircleDistance(Circle obj2);
 	double CircleLen();
 	double CircleArea();
@@ -21,4 +24,3 @@ public:
 	bool CircleIntersect(const Circle& obj2);
 	bool InCircle(double x, double y);  //Including borders
 };
-
