@@ -6,7 +6,7 @@ Circle::Circle()
 {
 	coord_x = 0;
 	coord_y = 0;
-	radius = 0;
+	radius = 1;
 }
 
 Circle::Circle(double x, double y, double r)
@@ -33,6 +33,21 @@ double Circle::CircleArea()
 	return (CircleMyPi * (radius * radius));
 }
 
+bool Circle::operator <(Circle& obj2)
+{
+	return (this->CircleArea() < obj2.CircleArea());
+}
+
+bool Circle::operator >(Circle& obj2)
+{
+	return (this->CircleArea() > obj2.CircleArea());
+}
+
+bool Circle::operator ==(Circle& obj2)
+{
+	return (this->CircleArea() == obj2.CircleArea());
+}
+
 double Circle::CircleDistance(Circle obj2)
 {
 	return sqrt(pow(fabs(coord_x - obj2.coord_x), 2) + pow(fabs(coord_y - obj2.coord_y), 2));
@@ -48,7 +63,7 @@ bool Circle::CircleIntersect(const Circle& obj2)
 	}
 	else
 	{
-		result = (fabs(radius - obj2.radius) < CircleDistance(obj2) < (radius + obj2.radius));
+		result = ((fabs(radius - obj2.radius) < CircleDistance(obj2)) && (CircleDistance(obj2) < (radius + obj2.radius)));
 	}
 
 	return result;
