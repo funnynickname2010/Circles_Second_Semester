@@ -1,14 +1,14 @@
-#include "Circle.h"
 #include <iostream>
 #include <string>
 #include <sstream>
+#include "Circle.h"
 
 void interface_options();
 
 int main()
 {
 	interface_options();
-	
+
 	std::string input;
 
 	bool first_circle_has_params = 0, second_circle_has_params = 0;
@@ -34,9 +34,20 @@ int main()
 			std::cin >> y_temp;
 			std::cout << "\nInput radius of the first circle: ";
 			std::cin >> r_temp;
+
+			if (r_temp == 0)
+			{
+				std::cout << "\nPlease input radius > 0 next time\n\n";
+				break;
+			}
+			else if (r_temp < 0)
+			{
+				std::cout << "\nThe program took your radius' absolute value\n";
+			}
+
 			std::cout << "\n\n";
 
-			Circle_1.CircleSet(x_temp, y_temp, r_temp);
+			Circle_1.CircleSet(x_temp, y_temp, abs(r_temp));
 
 			first_circle_has_params = 1;
 		}
@@ -50,9 +61,20 @@ int main()
 			std::cin >> y_temp;
 			std::cout << "\nInput radius of the second circle: ";
 			std::cin >> r_temp;
+
+			if (r_temp == 0)
+			{
+				std::cout << "\nPlease input radius > 0 next time\n\n";
+				break;
+			}
+			else if (r_temp < 0)
+			{
+				std::cout << "\nThe program took your radius' absolute value\n";
+			}
+
 			std::cout << "\n\n";
 
-			Circle_2.CircleSet(x_temp, y_temp, r_temp);
+			Circle_2.CircleSet(x_temp, y_temp, abs(r_temp));
 
 			second_circle_has_params = 2;
 		}
@@ -194,6 +216,24 @@ int main()
 		}
 		else if (input == "8")
 		{
+			if (first_circle_has_params && second_circle_has_params)
+			{
+				if (Circle_1 > Circle_2)
+				{
+					std::cout << "\nCircle 1 is bigger than circle 2\n";
+				}
+				else if (Circle_2 > Circle_1)
+				{
+					std::cout << "\nCircle 2 is bigger than circle 1\n";
+				}
+				else
+				{
+					std::cout << "\nThe circles are equal\n";
+				}
+			}
+		}
+		else if (input == "9")
+		{
 			break;
 		}
 		//else
@@ -201,7 +241,7 @@ int main()
 		//	std::cout << "\nInput error.\n";
 		//}
 
-	} while (input != "8");
+	} while (input != "9");
 }
 
 void interface_options()
@@ -214,5 +254,6 @@ void interface_options()
 	std::cout << "5. Calculate length of one of the circles\n";
 	std::cout << "6. Calculate area of one of the circles\n";
 	std::cout << "7. Check if a point lies within a circle\n";
-	std::cout << "8. Exit\n";
+	std::cout << "8. Whick circle is bigger\n";
+	std::cout << "9. Exit\n";
 }
